@@ -187,6 +187,7 @@ const resetCloudClient = async (userName, password, cloudClient) => {
   cloudClient.cleanCookie();
 
   let gg = `${firstSpace}`;
+     try {
   if (CookiesMap.has(userName)) {
     gg += `本地有储存此账号cookie`;
     cloudClient.setCookieMap(CookiesMap.get(userName));
@@ -204,9 +205,12 @@ const resetCloudClient = async (userName, password, cloudClient) => {
     cloudClient._setLogin(userName, password);
     await cloudClient.login();
   }
-
+      } catch (e) {
+        logger.error(e);
+      } finally {
+        logger.log(gg);
+  }
   CookiesMap.set(userName, cloudClient.getCookieMap());
-  logger.log(gg);
 };
 
 //用来存储cookies
