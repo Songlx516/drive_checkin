@@ -182,7 +182,7 @@ let family_threadx = env.family_threadx; //进程数
 let filePath = path.join(__dirname, "tyys_cookies.json"); // cookie保存文件路径
 let i;
 
-const resetCloudClient = async (userName, password, cloudClient) => {
+const resetCloudClient = async (userName, password) => {
   //打扫cookie
   cloudClient.cleanCookie();
 
@@ -245,7 +245,7 @@ const main = async () => {
 
       try {
         logger.log(`${(i - 1) / 2 + 1}.账户 ${userNameInfo} 开始执行`);
-        resetCloudClient(userName, password, cloudClient);
+        resetCloudClient(userName, password);
 
         let {
           cloudCapacityInfo: cloudCapacityInfo0,
